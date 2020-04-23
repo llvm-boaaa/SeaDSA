@@ -18,15 +18,12 @@ endif()
 
 find_package (Boost 1.55)
 if (Boost_FOUND)
-    target_include_directories(SEA_DSA PRIVATE ${Boost_INCLUDE_DIRS})
+    
 else()
 	message(FATAL_ERROR "BOOST 1.55 not found, needed for Sea-Dsa")
 endif ()
 
-target_include_directories(SEA_DSA PUBLIC "${BOAAA_SOURCE_DIR}/analysis/Sea-Dsa/include/")
+target_include_directories(SEA_DSA PUBLIC "${BOAAA_SOURCE_DIR}/analysis/Sea-Dsa/include/" ${Boost_INCLUDE_DIRS})
 
 #add LLVM_50 wrapper and mark SEA_DSA lib as dependencie of lv.50
-boaaa_add_analysis("50" SEA_DSA)
-
-#override standart config to cpp 11
-set_property(TARGET ${NAME} PROPERTY CXX_STANDARD 11)
+boaaa_add_analysis(NAME SEA_DSA VERSION "50" MAKRO "SEA_DSA" INCLUDE_DIRS "${Boost_INCLUDE_DIRS};${BOAAA_SOURCE_DIR}/analysis/Sea-Dsa/include/")

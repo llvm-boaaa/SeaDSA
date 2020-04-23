@@ -2,6 +2,6 @@
 #define _SEA_DSA_CONFIG_H_
 
 /* Define whether sanity checks are enabled */
-/* #undef SANITY_CHECKS */
+ #undef SANITY_CHECKS
 
 #endif
